@@ -34,7 +34,7 @@
 - 하나의 파일에는 튜플이 10개씩 들어있습니다
 - name은 unique한 attribute입니다
 
-<img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/c1baabc0-d47f-4ad4-8378-af2e2a5f3d58" width="450px" height="300px" title="이미지1" alt="common"></img><br/>
+  <img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/c1baabc0-d47f-4ad4-8378-af2e2a5f3d58" width="450px" height="300px" title="이미지1" alt="common"></img><br/>
 
 ### 조건
 - Case 1
@@ -64,7 +64,7 @@
     - 각 과목에 대해서 1학기 보다 2학기 때 성적향상이 일어난 과목의 개수가 2개 이상인 학생의 이름과 학번을 “(student_name),(student_number)” 형태로 output 파일에 출력
         - 성적은 등급을 의미하므로 숫자가 작아진 것이 성적 향상을 의미
       
-    <img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/dbffdaf8-a811-41c2-910a-e559f88d7235" width="450px" height="300px" title="이미지3" alt="case3"></img><br/>
+    <img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/dbffdaf8-a811-41c2-910a-e559f88d7235" width="300px" height="150px" title="이미지3" alt="case3"></img><br/>
 
 
 ### 방법
