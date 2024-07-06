@@ -73,15 +73,15 @@
 
 ### merge join
 
-case1의 경우엔 2개의 relation이 join attribute인 name을 기준으로 sorting되어 있어 open 함수를 각 파일마다 한번씩만 하면 되는(총 2000개 파일, 2000번 open) merge join을 사용하였음. 
+case1의 경우엔 2개의 relation이 join attribute인 name을 기준으로 sorting되어 있어 open 함수를 각 파일마다 한번씩만 하면 되는(총 2000개 파일, 2000번 open) merge join을 사용하였음.   
 nested loop 와 hash join을 사용할 경우 같은 파일을 여러번 불러올 수 있기때문에 open 함수를 더 많이 호출함.
 
 ## case2:
 
 ### hash join
 
-case2의 경우엔 2개의 relation이 모두 join attribute에 대해 sorting되어 있지 않아 nested_loop join 혹은 hash join으로 구현해야함. 
-nested_loop의 경우 최소를 위해 10 block씩 name_age를 100번에 나눠서 불러오고, 한번당 1000개 block의 name_salary을 open해야 하므로 100*1000 + 1000 = 101000번의 open이 필요. 
+case2의 경우엔 2개의 relation이 모두 join attribute에 대해 sorting되어 있지 않아 nested_loop join 혹은 hash join으로 구현해야함.  
+nested_loop의 경우 최소를 위해 10 block씩 name_age를 100번에 나눠서 불러오고, 한번당 1000개 block의 name_salary을 open해야 하므로 100*1000 + 1000 = 101000번의 open이 필요.  
 hash join의 경우 partition시 기존 2000개의 block open과 bucket에 나눠서 쓸때 20000번의 open 필요. 
 join의 경우 각 bucket file들을 한번씩 open만 하면 되므로 2000번의 open필요. 
 총 204000번의 open 발생하여 hash join이 좋음.
