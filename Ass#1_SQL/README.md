@@ -3,7 +3,7 @@
 
 ### 명세
 
-**주어진 파일**
+   **주어진 파일**
 
 - insert.sql
 - schema.xlsx
@@ -13,7 +13,7 @@
 - result.xlsx
 
 
-**방법**
+   **방법**
 
 [http://sqlfiddle.com/](http://sqlfiddle.com/)
 
@@ -25,6 +25,6 @@ Run SQL
 
 Check Result
 
-**목표**
+   **목표**
 
 reulst.xlsx에 있는 30문제에 대한 쿼리를 assignment1.sql에 작성
