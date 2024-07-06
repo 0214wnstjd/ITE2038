@@ -1,6 +1,6 @@
 # 명세   
 ### 목적
-SQL Practice
+Join algorithm을 이해하고 상황에 맞게 최적의 algorithm 선택하기
 
 ### 주어진 파일
 
