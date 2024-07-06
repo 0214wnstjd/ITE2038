@@ -99,25 +99,25 @@ join의 경우 각 bucket file 들을 한번씩 open만 하면 되므로 3000번
 
 1. C++의 fstream 사용법
 
-참고: [https://psychoria.tistory.com/774](https://psychoria.tistory.com/774)
+    참고: [https://psychoria.tistory.com/774](https://psychoria.tistory.com/774)
 
     open(경로, std::ios::<옵션>) - <옵션>에는 in, out, binary, app 옵션 등이 들어갈 수 있음.
 
 경로는 절대 경로 또는 상대 경로로 써야하고, 상대 경로를 사용하였음.  
 
-ex) ../bucket ~~
+    ex) ../bucket ~~
 
-1. Hash join시 Partition
+2. Hash join시 Partition
 
     bucket이란걸 어떻게 구현할지 모르겠어서 bucket 디렉토리들을 만들어 줄까 하였는데 createdirectory라는 함수를 이용해야해서 그냥 파일명을 name의 앞 세글자로 구분할 수 있게 분류 하였다.   
    각 파일안에 들어간 record의 개수는 기존 양식에 맞춰 10개씩으로 하였다.   
    예를 들어 name이 abcd라면 hash function이 abc를 캐치하여 분류 해주는 알고리즘을 사용.    
    편의를 위해 ascii code로 분류 하였음. a→ 95 ~ j→106.   
 
-1. Partition 후 Join
+3. Partition 후 Join
 
     case 2, 3 모두 join 조건은 까다롭지 않아 해결되었다.    
    그러나 자꾸 결과가 예상 결과보다 적게 나와서 어떤 실수를 했나 찾아보던 중, open된 inner relation file에서 getline을 반복적으로 몇바퀴씩 할때, fstream 변수가 가리키는 파일의 위치가 이미 끝으로 가있는걸 확인했다.    
    seekg라는 함수를 사용하여 위치를 변경해줄 수 있다고 한다.    
 
-참고: [https://m.blog.naver.com/kks227/220225345923](https://m.blog.naver.com/kks227/220225345923)
+    참고: [https://m.blog.naver.com/kks227/220225345923](https://m.blog.naver.com/kks227/220225345923)
