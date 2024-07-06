@@ -16,8 +16,8 @@
 
 ### 필요 기능
 
-  <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/4adb7036-ca79-4b7b-ba3e-f588c52fd3e6/b2780fc6-30a1-41c1-a18d-c141eb497e79/Untitled.png" width="40%" height="40%"></img><br/>
-  <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/4adb7036-ca79-4b7b-ba3e-f588c52fd3e6/9adbacff-9d32-4596-b3f6-8b11778aa1f3/Untitled.png" width="40%" height="40%" img><br/>
+  <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/4adb7036-ca79-4b7b-ba3e-f588c52fd3e6/b2780fc6-30a1-41c1-a18d-c141eb497e79/Untitled.png" width="40%" height="40%" title="이미지1"></img><br/>
+  <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/4adb7036-ca79-4b7b-ba3e-f588c52fd3e6/9adbacff-9d32-4596-b3f6-8b11778aa1f3/Untitled.png" width="40%" height="40%" title="이미지2" img><br/>
   <img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/c1baabc0-d47f-4ad4-8378-af2e2a5f3d58" width="40%" height="40%" title="이미지1" alt="common"></img><br/>
 
 ### 조건
