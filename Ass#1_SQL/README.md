@@ -1,5 +1,5 @@
 # 명세   
-** Ass#1 SQL Practice **
+**Ass#1 SQL Practice**
 
 ## 주어진 파일
 
