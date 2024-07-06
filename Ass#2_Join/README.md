@@ -103,8 +103,9 @@
         open(<경로>, std::ios::<옵션>)
 
     - <경로>에는 절대 경로 또는 상대 경로로 써야하고, 상대 경로를 사용하였음. ex) ../bucket ~    
-    - <옵션>에는 in, out, binary, app 옵션 등이 들어갈 수 있음.    
-      참고: [https://psychoria.tistory.com/774](https://psychoria.tistory.com/774)
+    - <옵션>에는 in, out, binary, app 옵션 등이 들어갈 수 있음.     
+
+    참고: [https://psychoria.tistory.com/774](https://psychoria.tistory.com/774)
 
 3. Hash join시 Partition
 
