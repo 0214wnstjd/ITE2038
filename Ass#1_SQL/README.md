@@ -2,9 +2,8 @@
 
 
 ### 명세
-<br/><br/>
+<br/>
 **주어진 파일**
-
 - insert.sql
 - schema.xlsx
     
