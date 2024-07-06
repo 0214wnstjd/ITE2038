@@ -1,3 +1,13 @@
+# How to run
+- `Install IntelliJ`
+- `Insatll MySQL`
+- `Install MySQL Workbench`
+- `Start MySQL Server`
+- `Add Connection in MySQL Workbench (port: 3306)`
+- `Run Proj1 2019007892 Script.sql`
+- `Create project in IntelliJ with default environment`
+- `Build and Run`
+  
 # Specification
 
 ## To Do
