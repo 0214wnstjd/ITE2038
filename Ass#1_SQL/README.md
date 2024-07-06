@@ -1,5 +1,6 @@
 # 명세   
-**SQL Practice**
+### 목적
+SQL Practice
 
 ### 주어진 파일
 
