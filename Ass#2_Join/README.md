@@ -44,7 +44,7 @@
     - name을 기준으로 natural join 수행
     - “(name),(age),(salary)” 형태로 output 파일에 출력
   
-    <img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/f99cabdf-c07c-4db3-a233-d1fcea4cb8c5" width="450px" height="300px" title="이미지2" alt="case1"></img><br/>
+    <img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/f99cabdf-c07c-4db3-a233-d1fcea4cb8c5" width="50%" height="50%" title="이미지2" alt="case1"></img><br/>
 
 - Case 2
     - 첫 번째 relation의 attribute는 name, age
@@ -64,7 +64,7 @@
     - 각 과목에 대해서 1학기 보다 2학기 때 성적향상이 일어난 과목의 개수가 2개 이상인 학생의 이름과 학번을 “(student_name),(student_number)” 형태로 output 파일에 출력
         - 성적은 등급을 의미하므로 숫자가 작아진 것이 성적 향상을 의미
       
-    <img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/dbffdaf8-a811-41c2-910a-e559f88d7235" width="300px" height="150px" title="이미지3" alt="case3"></img><br/>
+    <img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/dbffdaf8-a811-41c2-910a-e559f88d7235" width="30%" height="30%" title="이미지3" alt="case3"></img><br/>
 
 
 ### 방법
