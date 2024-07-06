@@ -33,8 +33,8 @@
 - 하나의 relation은 1000개의 파일에 나뉘어져있습니다
 - 하나의 파일에는 튜플이 10개씩 들어있습니다
 - name은 unique한 attribute입니다
-    
-    ![스크린샷 2024-07-06 오후 12.01.49.png](https://github.com/0214wnstjd/ITE2038/assets/109850168/da8cb325-ae41-403e-954d-d97d95c403b6](https://github.com/0214wnstjd/ITE2038/assets/109850168/c1baabc0-d47f-4ad4-8378-af2e2a5f3d58)
+    <img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/c1baabc0-d47f-4ad4-8378-af2e2a5f3d58" width="450px" height="300px" title="px(픽셀) 크기 설정" alt="RubberDuck"></img><br/>
+    ![스크린샷 2024-07-06 오후 12.01.49.png](https://github.com/0214wnstjd/ITE2038/assets/109850168/c1baabc0-d47f-4ad4-8378-af2e2a5f3d58)
 
 ### 조건
 - Case 1
