@@ -120,4 +120,4 @@
    - 그러나 자꾸 결과가 예상 결과보다 적게 나와서 어떤 실수를 했나 찾아보던 중, open된 inner relation file에서 getline을 반복적으로 몇바퀴씩 할때, fstream 변수가 가리키는 파일의 위치가 이미 끝으로 가있는걸 확인했다.    
    - seekg라는 함수를 사용하여 위치를 변경해줄 수 있다고 한다.      
 
-    참고: [https://m.blog.naver.com/kks227/220225345923](https://m.blog.naver.com/kks227/220225345923)
+   참고: [https://m.blog.naver.com/kks227/220225345923](https://m.blog.naver.com/kks227/220225345923)
