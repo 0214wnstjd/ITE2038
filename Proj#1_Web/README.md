@@ -1,107 +1,401 @@
-# 명세   
+# Specification
 
-### 목표
+## To Do
 **가상 수강 신청 사이트 구축**   
 
-1. 주어진수강신청데이터를기반으로데이터베이스를생성(Back-End)
-2. 데이터베이스에연결가능한사용자어플리케이션을제작(Front-End)
+1. 주어진 수강신청 데이터를 기반으로 데이터베이스를 생성(Back-End)
+2. 데이터베이스에 연결가능한 사용자 어플리케이션을 제작(Front-End)
 
 - Data Set을 참고하여 Table을 만들고 Data를 Database에 추가합니다
-- 어디까지나 참고일 뿐이며, 자유롭게 스키마 변경 및 추가 가능
+  - 어디까지나 참고일 뿐이며, 자유롭게 스키마 변경 및 추가 가능
 
-### 주어진 파일
+## Given File
 
 - csv/
 - mysql-connector-j-8.0.31.tar.gz
 
-### 필요 기능
+## Requirements
 
-  <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/4adb7036-ca79-4b7b-ba3e-f588c52fd3e6/b2780fc6-30a1-41c1-a18d-c141eb497e79/Untitled.png" width="40%" height="40%" title="이미지1"></img><br/>
-  <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/4adb7036-ca79-4b7b-ba3e-f588c52fd3e6/9adbacff-9d32-4596-b3f6-8b11778aa1f3/Untitled.png" width="40%" height="40%" title="이미지2" img><br/>
-  <img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/c1baabc0-d47f-4ad4-8378-af2e2a5f3d58" width="40%" height="40%" title="이미지1" alt="common"></img><br/>
-
-### 조건
-- Case 1
-    - 첫 번째 relation의 attribute는 name, age
-    - 두 번째 relation의 attribute는 name, salary
-    - 모든 tuple은 name을 기준으로 정렬되어 있음
-    - name을 기준으로 natural join 수행
-    - “(name),(age),(salary)” 형태로 output 파일에 출력
+<img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/dd8f21f8-fc5f-462d-ac73-554be8bb8820" width="80%" height="80%" title="이미지1"></img><br/>
+<img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/e9a837a4-0088-4107-9304-2ecdc4aff4a6" width="80%" height="80%" title="이미지2"> </img><br/>
   
-        <img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/f99cabdf-c07c-4db3-a233-d1fcea4cb8c5" width="30%" height="30%" title="이미지2" alt="case1"></img><br/>
 
-- Case 2
-    - 첫 번째 relation의 attribute는 name, age
-    - 두 번째 relation의 attribute는 name, salary
-    - 첫 번째 relation의 tuple은 age를 기준으로 정렬되어 있음
-    - 두 번째 relation의 tuple은 salary를 기준으로 정렬되어 있음
-    - name을 기준으로 natural join 수행
-    - “(name),(age),(salary)” 형태로 output 파일에 출력
+## Schema Example
 
-- Case 3
-    - 첫 번째 relation의 attribute는 학생 이름과 1학기 성적
-        - student_name, korean, math, english, science, social, history
-    - 두 번째 relation의 attribute는 학생 이름과 2학기 성적
-        - student_name, korean, math, english, science, social, history
-    - 세 번째 relation의 attribute는 student_name, student_number
-    - 모든 data는 무작위로 저장되어 있음
-    - 각 과목에 대해서 1학기 보다 2학기 때 성적향상이 일어난 과목의 개수가 2개 이상인 학생의 이름과 학번을 “(student_name),(student_number)” 형태로 output 파일에 출력
-        - 성적은 등급을 의미하므로 숫자가 작아진 것이 성적 향상을 의미
-      
-        <img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/dbffdaf8-a811-41c2-910a-e559f88d7235" width="20%" height="20%" title="이미지3" alt="case3"></img><br/>
+<img src="https://github.com/0214wnstjd/ITE2038/assets/109850168/b465fab2-4ed4-4f8c-9501-80a0cedd2fc7" width="60%" height="50%" title="이미지3"></img><br/>
 
+- **강의실(room)**   
+  강의실 개수의 합과 건물의 총 강의실 개수는 같아야 함
+- **건물(building)**  
+  건물의 총 강의실 개수는 강의실 개수의 합과 같아야 함
+- **과목(course)**
+- **전공(major)**
+- **성적(credits)**    
+  이수 년도(year)에는 학기를 구분하지 않음
+- **교강사(lecturer)**
+- **학생(student)**   
+  학생의 지도교수는 교강사 목록에 실제로 존재해야 함
+- **수업(class)**  
+  신청 수강 정원이 강의실의 수용 인원을 넘을 수 없음
+
+## Default Environment
+- **IntelliJ IDEA** 2022.2
+- **MySQL** 8.0
+- **Tomcat** 9.0.65
+- **SDK** Amazon Corretto version 15.0.2
+- **Connector** mysql-connector-java-8.0.20.jar
 
 # Implementation
 
-## case1:
+## Design
+기존 schema에 student relation에 state(학적) attribute 추가    
+   
+**Domain** (default: 1)
+- 1: 재학
+- 2: 휴학
+- 3: 자퇴  
 
-### merge join
+## Implement Details
 
-- case1의 경우엔 2개의 relation이 join attribute인 name을 기준으로 sorting되어 있어 open 함수를 각 파일마다 한번씩만 하면 되는(총 2000개 파일, 2000번 open) merge join을 사용하였음.     
-- nested loop 와 hash join을 사용할 경우 같은 파일을 여러번 불러올 수 있기때문에 open 함수를 더 많이 호출함.  
+### 수강편람
 
-## case2:
+- 전체
 
-### hash join
+```sql
+select * 
+from class 
+where opened = 2022 
+order by class_id
+```
 
-- case2의 경우엔 2개의 relation이 모두 join attribute에 대해 sorting되어 있지 않아 nested_loop join 혹은 hash join으로 구현해야함.    
-- nested_loop의 경우 최소를 위해 10 block씩 name_age를 100번에 나눠서 불러오고, 한번당 1000개 block의 name_salary을 open해야 하므로 100*1000 + 1000 = 101000번의 open이 필요.    
-- hash join의 경우 partition시 기존 2000개의 block open과 bucket에 나눠서 쓸때 20000번의 open 필요.    
-- join의 경우 각 bucket file들을 한번씩 open만 하면 되므로 2000번의 open필요.    
-- 총 204000번의 open 발생하여 hash join이 좋음.    
+- 수업번호 검색
 
-## case3:
+```sql
+select * 
+from class 
+where opened = 2022 and class_no = ? 
+order by class_id
+```
 
-### hash join
+- 학수번호 검색
 
-- case3의 경우엔 3개의 relation이 모두 무작위로있어 nested_loop join 또는 hash join을 사용하여야함.    
-- case2와 주어진 메모리 조건이 같기 때문에 case2에서 이미 봤듯이 hash join이 open을 덜 호출함.    
-- case 3에선 partition시 기존 3000개 block open과 bucket에 나눠서 쓸때 30000번의 open 필요.    
-- join의 경우 각 bucket file 들을 한번씩 open만 하면 되므로 3000번의 open 필요. 총 306000번의 open 발생함.   
+```sql
+select * 
+from class 
+where opened = 2022 and course_id = ? 
+order by class_id
+```
 
-## Trouble Shooting:
+- 교과목명 키워드 포함 검색
 
-1. C++의 fstream 사용법
+```sql
+select * 
+from class 
+where opened = 2022 and name like ? 
+order by class_id
+```
 
+- 교강사이름 표시
 
-        open(<경로>, std::ios::<옵션>)
+```sql
+SELECT name FROM lecturer WHERE lecturer_id = ?
+```
 
-    - <경로>에는 절대 경로 또는 상대 경로로 써야하고, 상대 경로를 사용하였음. ex) ../bucket ~    
-    - <옵션>에는 in, out, binary, app 옵션 등이 들어갈 수 있음.     
+- 신청인원/정원 표시
 
-    참고: [https://psychoria.tistory.com/774](https://psychoria.tistory.com/774)
+```sql
+SELECT person_max 
+FROM class 
+WHERE class_id = ?
 
-3. Hash join시 Partition
+SELECT count(*) 
+FROM application 
+WHERE class_id = ?
+```
 
-    - bucket이란걸 어떻게 구현할지 모르겠어서 bucket 디렉토리들을 만들어 줄까 하였는데 createdirectory라는 함수를 이용해야해서 그냥 파일명을 name의 앞 세글자로 구분할 수 있게 분류 하였다.   
-   - 각 파일안에 들어간 record의 개수는 기존 양식에 맞춰 10개씩으로 하였다.   
-   - 예를 들어 name이 abcd라면 hash function이 abc를 캐치하여 분류 해주는 알고리즘을 사용.    
-   - 편의를 위해 ascii code로 분류 하였음. a→ 95 ~ j→106.   
+- 강의실 표시
 
-4. Partition 후 Join
+```sql
+SELECT building_id FROM room WHERE room_id = ?
 
-   - case 2, 3 모두 join 조건은 까다롭지 않아 해결되었다.    
-   - 그러나 자꾸 결과가 예상 결과보다 적게 나와서 어떤 실수를 했나 찾아보던 중, open된 inner relation file에서 getline을 반복적으로 몇바퀴씩 할때, fstream 변수가 가리키는 파일의 위치가 이미 끝으로 가있는걸 확인했다.    
-   - seekg라는 함수를 사용하여 위치를 변경해줄 수 있다고 한다.      
+SELECT name FROM building WHERE building_id = ?
+```
 
-   참고: [https://m.blog.naver.com/kks227/220225345923](https://m.blog.naver.com/kks227/220225345923)
+### 사용자 로그인
+
+```sql
+SELECT password 
+FROM student 
+WHERE student_id= ?
+```
+
+### 사용자 비밀번호 변경
+
+```sql
+update student set password = ? 
+where student_id = ?
+```
+
+### 수강신청 및 취소
+
+희망수업도 수강신청과 동일함
+
+- 수강신청 내역 조회
+
+```sql
+SELECT * FROM application where student_id = ?
+```
+
+- 수강신청 추가
+
+```sql
+insert into application values (?, ?, ?)
+```
+
+- 수강신청 취소
+
+```sql
+delete from application 
+where student_id = ? and class_id = ?
+```
+
+- 재수강 여부 체크
+
+```sql
+SELECT credits_id 
+FROM credits 
+WHERE student_id = ? and course_id = ?
+```
+
+조건1: 이전 성적이 B0이상일 경우 수강 신청 불가능
+
+→ 이전 성적 중 최고 성적 조회
+
+```sql
+SELECT case when grade = 'A+' then 4.5 
+	when grade = 'A0' then 4.0 when grade = 'B+' 
+	then 3.5 when grade = 'B0' then 3.0 when 
+	grade = 'C+' then 2.5 when grade = 'C0' then 
+	2.0 when grade = 'D+' then 1.5 when grade = 'D0' 
+	then 1.0 when grade = 'F' then 0.0 else 0.0 end 
+	as gradeNum 
+FROM credits 
+where student_id = ? and course_id = ? 
+order by gradeNum desc limit 1
+```
+
+조건2: 정원이 다 찼을 경우 해당 과목 수강 신청 불가능
+
+→~~수업 정원 조회, 수강신청 인원 조회(수강편람과 동일)~~
+
+조건3: 동일 시간대에 2개 이상의 과목 수강 신청은 불가능
+
+→수업 시간 아이디 조회, ~~시간 조회(시간표 조회와 같음)~~
+
+```sql
+SELECT time_id 
+FROM time 
+WHERE class_id = ? and period = 1
+```
+
+조건4: 최대 학점은 18학점으로 제한하여 초과 신청은 불가능
+
+→수업 학점 조회
+
+```sql
+SELECT credit FROM class WHERE class_id = ?
+```
+
+### 시간표 조회
+
+- 시작시간
+
+```sql
+SELECT begin 
+FROM time 
+WHERE time_id = ?
+```
+
+- 종료시간
+
+```sql
+SELECT end 
+FROM time 
+WHERE time_id = ?
+```
+
+### 관리자-학생 정보 조회 및 변경
+
+- 학생 리스트 출력
+
+```sql
+select * from student order by student_id
+```
+
+- 성적 조회
+
+```sql
+SELECT * FROM credits WHERE student_id= ? 
+order by year, credits_id
+```
+
+- 학적  변경
+
+```sql
+update student set state = ? where student_id = ?
+```
+
+### 관리자-과목 상태 조회 및 변경
+
+- ~~과목 조회 (수강편람과 동일)~~
+- 과목 정원 변경
+
+```sql
+update class set person_max = ? 
+where class_id = ?
+```
+
+- ~~수강 허용(한자리 증원, 수강신청)~~
+
+### 관리자-과목 설강 및 폐강
+
+- 설강
+
+```sql
+insert into class values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+```
+
+- 폐강
+
+```sql
+delete from class where class_id = ?
+```
+
+조건1: 수강 정원이 강의실 수용 인원보다 초과할 경우 과목 개설 불가능
+
+→~~수강 정원 조회(수강편람과 동일)~~, 강의실 수용 인원 조회
+
+```sql
+SELECT occupancy FROM room WHERE room_id = ?
+```
+
+조건2: 수업이 폐강되면 해당 수업을 신청/희망 한 학생들의 목록에서 과목 내역 삭제
+
+```sql
+delete from application where class_id = ?
+
+delete from hopeclass where class_id = ?
+```
+
+~~조건3: 토요일과 평일 18시 이후 수업은 E-러닝 강의로 분류, 일요일은 과목 개설 불가능~~
+
+~~→입력 받을때 처리~~
+
+### 관리자-통계
+
+- 학생 평점 평균 조회
+
+```sql
+SELECT avg(gradeNum) as gradeAverage 
+from (select case when grade = 'A+' then 4.5 
+	when grade = 'A0' then 4.0 when grade = 'B+' 
+	then 3.5 when grade = 'B0' then 3.0 when grade = 
+	'C+' then 2.5 when grade = 'C0' then 2.0 when grade
+	 = 'D+' then 1.5 when grade = 'D0' then 1.0 when 
+	grade = 'F' then 0.0 else 0.0 end as gradeNum 
+	from credits where student_id = ?) as a
+```
+
+- 해당 과목을 이수한 총 인원 조회
+
+```sql
+SELECT count(*) FROM credits WHERE course_id = ?
+```
+
+- 학생 과목 평점 조회(수강 이력이 여러번이면 평균)
+
+```sql
+select avg(gradeNum) 
+from (SELECT case when grade = 'A+' then 4.5 
+		when grade = 'A0' then 4.0 when grade = 'B+' 
+	then 3.5 when grade = 'B0' then 3.0 when grade = 
+	'C+' then 2.5 when grade = 'C0' then 2.0 when 
+	grade = 'D+' then 1.5 when grade = 'D0' then 1.0 
+	when grade = 'F' then 0.0 else 0.0 end as gradeNum 
+	FROM credits WHERE student_id = ? and course_id = ?)
+as a
+```
+
+- 학생 과목 이수 횟수 조회
+
+```sql
+select count(*) from credits 
+where student_id = ? and course_id = ?
+```
+
+## Result
+[노션 - Proj #1 수강신청 만들기](https://roan-fin-633.notion.site/Proj-1-fcb10722160c45ce9f753ab53c61c27e?pvs=4)
+
+## Trouble shooting
+
+1. 웹구현   
+    
+   참고: [https://youtu.be/hke9FKluXow](https://youtu.be/hke9FKluXow)
+
+2. 시간표 구현  
+
+    \<table/>, \<tr/>, \<td/>로 시간표를 구현하였음
+
+    행이 시간대를, 열이 요일을 나타내게 하였음   
+
+    - Ex 1) 시간대가 A시 B분 ~ C시 D분 일때, 0:00~0:30에 포함 되는지 체크? 
+
+      조건: 시간대는 String으로 시작시간, 종료시간 따로 주어짐, B와 D는 0 또는 30
+
+      → String의 substring을 이용하여 시, 분 따로 체크   
+
+      - 1.**시** 먼저 체크
+
+        시간이 만족해야하는 조건: A ≤ 0, C ≥ 0
+
+      - 2.**분**으로 예외 체크 
+        - case1: A=0, B=30
+
+        - case2: C = 0, D=0
+
+      ```java
+      //코드의 일부
+      if(d[i].equals(begin.substring(0,1)) && Integer.parseInt(begin.substring(7,8)) <= 0
+        && Integer.parseInt(end.substring(7,8)) >=0){
+        if(Integer.parseInt(begin.substring(7,8)) == 0 && Integer.parseInt(begin.substring(10,12)) == 30){;}
+        else if(Integer.parseInt(end.substring(7,8)) == 0 && Integer.parseInt(end.substring(10,12)) == 0){;}
+        else{
+      ```
+
+    - Ex2) 시간대가 A시 B분 ~ C시 D분 일때, 0:30~1:00에 포함 되는지 체크? 
+
+      시간만 체크 : A≤0, C>0
+
+      30분 간격으로 반복문을 사용하였음 
+
+      → 시간표 출력 시간 오래 걸림
+
+3. 통계 구현
+
+    **학점을 잘 안 주는 과목 찾기**
+
+    필요한 정보: 학생 평점 평균, 학생 과목별 평점, 과목을 이수한 학생 수
+
+    → 모든학생(학생 과목 평점 - 학생 평점 평균)의 합 / 과목을 이수한 학생 수
+
+    SQL문으로 구현할 방법을 못찾아서, 
+
+    - creditsDAO 내에 학생 평점 평균을 반환하는 `getAverageGradeStudent` 함수,
+
+    - 재수강 일 수 있기에 해당 학생이 이수한 횟수를 반환하는 `getHowManyTime` 함수,
+
+    - 학생이 해당 과목에 대한 평점을 반환하는`getCredit` 함수,
+
+    - 해당과목으로 성적이 몇개 있는지 반환하는 `getHowManyStudent` 함수를 구현.
+
+    학생이 한 과목에 성적이 여러개인 경우를 위해, getCredit은 그 성적들의 평균을 구하게 하고, getHowManyStudent로 (해당 과목 평점 - 학생 평점 평균)을 곱해 주었음.
